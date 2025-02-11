@@ -1,5 +1,6 @@
 import { Component, Input, type OnInit } from "@angular/core"
 import type { Task } from "../../constants/tasks.interface"
+import { TaskService } from '../../services/task.service'
 
 @Component({
   selector: "app-tasks-list",
@@ -9,21 +10,18 @@ export class TasksListComponent implements OnInit {
   // Input decorator marks tasks property as input from parent component
   @Input() tasks: Task[]
 
-  constructor() {}
+  constructor(private taskService: TaskService) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.tasks = this.taskService.getTasks()
+  }
 
   /**
    * Removes a task from the tasks array
    * @param task The task to be removed
    */
   removeTask(task: Task) {
-    // Find index of task in array
-    const taskIndex = this.tasks.indexOf(task)
-    // Remove task if found
-    if (taskIndex !== -1) {
-      this.tasks.splice(taskIndex, 1)
-    }
+    this.taskService.removeTask(task)
   }
 
   /**
