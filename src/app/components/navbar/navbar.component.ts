@@ -10,8 +10,15 @@ import { Router } from '@angular/router';
   // Template definition using template literal syntax
   template: `
     <nav class="navbar">
-      <!-- Brand/logo section with click handler for home navigation -->
-      <div class="nav-brand" (click)="navigateHome()">Task Manager</div>
+      <!-- Brand section with separate logo link and text -->
+      <div class="nav-brand">
+        <!-- Logo image linking to hippieproject.com -->
+        <a href="https://hippieproject.com/" target="_blank" class="logo-link">
+          <img src="assets/logo.png" alt="Hippie Project Logo" class="nav-logo">
+        </a>
+        <!-- App title with home navigation -->
+        <span class="brand-text" (click)="navigateHome()">Task Manager</span>
+      </div>
       <!-- Container for navigation buttons -->
       <div class="nav-links">
         <!-- Home navigation button -->
@@ -34,12 +41,39 @@ import { Router } from '@angular/router';
       align-items: center;
       box-shadow: 0 2px 4px rgba(0,0,0,0.1);
     }
-    /* Brand/logo text styles */
+    /* Brand section styles */
     .nav-brand {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+    /* Logo link styles */
+    .logo-link {
+      display: flex;
+      align-items: center;
+      transition: opacity 0.2s;
+    }
+    /* Logo link hover effect */
+    .logo-link:hover {
+      opacity: 0.8;
+    }
+    /* Logo image styles */
+    .nav-logo {
+      height: 2.5rem;
+      width: auto;
+    }
+    /* Brand text styles */
+    .brand-text {
       color: white;
       font-size: 1.5rem;
       font-weight: bold;
       cursor: pointer;
+      margin-left: 0.5rem;
+      transition: opacity 0.2s;
+    }
+    /* Brand text hover effect */
+    .brand-text:hover {
+      opacity: 0.8;
     }
     /* Navigation links container styles */
     .nav-links {
